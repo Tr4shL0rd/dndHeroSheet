@@ -1,9 +1,10 @@
+#!/usr/bin/env python
 import json
 
-with open("heroSheetEN.json", "r") as jsonDataEN:
+with open("jsons/heroSheetEN.json", "r") as jsonDataEN:
     dataEN = jsonDataEN.read()
 objEN = json.loads(dataEN)
-with open("heroSheetDA.json", "r") as jsonDataDA:
+with open("jsons/heroSheetDA.json", "r") as jsonDataDA:
     dataDA = jsonDataDA.read()
 objDA = json.loads(dataDA)
 
