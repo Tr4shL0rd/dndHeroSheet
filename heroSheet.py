@@ -98,7 +98,8 @@ class Commands():
         elif lang == "EN" and stat in statListEN:
             print(f"{stat}: {objDA[stat] + amount}")
         padding("Add Point")
-
+        
+    #Function for Translation
     def trans(word):
         wordBook = {
             #stats health
