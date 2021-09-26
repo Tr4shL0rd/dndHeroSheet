@@ -69,7 +69,7 @@ class Commands():
 
         statsDA = [objDA["udholdenhed"], objDA["held"],
                    objDA["guld"], objDA["skatte"], objDA["proviant"]]
-                   
+
         statNameEN = ["VIT", "LUCK", "GOLD", "TREASURE", "CANTRIPS"]
         statNameDA = ["udholdenhed", "held", "guld", "skatte", "proviant"]
         name = 0
@@ -89,42 +89,44 @@ class Commands():
             print(f"{key} x{value}")
         padding("inventory")
 
-    def addPoint(self, lang="DA"):
+    def addPoint(self, stat):#, lang="DA"):
         padding("Add Point", True)
-        statListDA = ["udholdenhed", "held"]
+        #statListDA = ["udholdenhed", "held"]
         statListEN = ["vit", "luck"]
-
-        stat = str(input("stat: "))
-        if stat not in statListDA:
-            print(f"'{stat}' is not a stat!")
-            self.addPoint()
+        print(stat)
         amount = int(input("amount: "))
-        if lang == "DA" and stat in statListDA:
-            print(f"{stat}: {objDA[stat] + amount}")
-        elif lang == "EN" and stat in statListEN:
-            print(f"{stat}: {objDA[stat] + amount}")
+        print(f"{stat}: {objEN[stat.upper()] + amount}")
+
+        #stat = str(input("stat: "))
+        #if stat not in statListDA:
+        #    print(f"'{stat}' is not a stat!")
+        #    self.addPoint()
+        #if lang == "DA" and stat in statListDA:
+        #    print(f"{stat}: {objDA[stat] + amount}")
+        #elif lang == "EN" and stat in statListEN:
+        #    print(f"{stat}: {objDA[stat] + amount}")
         padding("Add Point")
 
-    # Function for Translation
-    def trans(word):
-        wordBook = {
-            # stats health
-            "vit": "udholdenhed",
-            "udholdenhed": "vit",
-            # stats luck
-            "luck": "held",
-            "held": "luck",
-            # misc gold
-            "gold": "guld",
-            "guld": "gold",
-            # misc treasure
-            "treasure": "skatte",
-            "skatte": "treasure",
-            # misc cantrips
-            "cantrips": "proviant",
-            "proviant": "cantrips"
-        }
-        return wordBook[word]
+# Function for Translation
+def trans(word):
+    wordBook = {
+        # stats health
+        "vit": "udholdenhed",
+        "udholdenhed": "vit",
+        # stats luck
+        "luck": "held",
+        "held": "luck",
+        # misc gold
+        "gold": "guld",
+        "guld": "gold",
+        # misc treasure
+        "treasure": "skatte",
+        "skatte": "treasure",
+        # misc cantrips
+        "cantrips": "proviant",
+        "proviant": "cantrips"
+    }
+    return wordBook[word]
 
 
 def main():
@@ -150,7 +152,9 @@ def main():
         command.inventory()
 
     elif choice == "addPoint":
-        command.addPoint()
+        stat = input("Stat: ")
+        transStat = trans(stat)
+        command.addPoint(transStat)
 
     else:
         print(f"sorry, \"{choice}\" is not a valid command.\n")
