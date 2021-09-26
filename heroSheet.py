@@ -1,4 +1,13 @@
 #!/usr/bin/env python
+
+# Created: 9/25/21 10:54 AM
+# Author: Tr4shL0rd
+
+# Description: For a danish D&D book "Sværd og Trolddom: Troldmanden fra Ildbjerget"
+
+#TODO
+# dump addPoint amount to .json or find some other way to save it 
+
 import json
 
 with open("jsons/heroSheetEN.json", "r") as jsonDataEN:
@@ -11,13 +20,15 @@ objDA = json.loads(dataDA)
 
 class Commands():
     def help(self):
-        print("|<=================>COMMANDS<===================>|")
-        print("|list        => returns all keys and values.     |")
-        print("|stats       => returns all charater stats.      |")
-        print("|inv         => returns all items in inventory.  |")
-        print("|addPoint    => adds n points to stat x.         |")
-        print("|removePoint => removes n points from stat x.    |")
-        print("|<=================>COMMANDS<===================>|")
+        padding = "|<=================>COMMANDS<===================>|"
+        print(padding)
+        print("|help        => Shows this message.              |")
+        print("|list        => Returns all keys and values.     |")
+        print("|stats       => Returns all charater stats.      |")
+        print("|inv         => Returns all items in inventory.  |")
+        print("|addPoint    => Adds n points to stat x.         |")
+        print("|removePoint => Removes n points from stat x.    |")
+        print(padding)
 
     def getStatDA(self, stat):
         print(f"{stat.upper()}: {str(objDA[stat])}")
@@ -52,20 +63,21 @@ class Commands():
         for key, value in objDA["udstyrsliste"].items():
             print(f"{key} x{value}")
 
-    def addPoint(self, stat, amount):
-        with open("testJson.json") as f:
-            data = json.load(f)
-        for elem in data.items():
-            elem["vit"] = elem["vit"].replace("vit", "tiv")
-
-        print(data)
+    def addPoint(self, lang="DA"):
+        statListDA = ["udholdenhed", "held"]
+        statListEN = ["vit","luck"]
         
-        #data = {
-        #    stat: amount
-        #}
-        #print(data)
-        #with open("testJson.json", "w") as dataOut:
-        #    json.dump(data, dataOut, ensure_ascii=False)
+        stat = str(input("stat: ")) 
+        if stat not in statListDA:
+            print(f"'{stat}' is not a stat!")
+            self.addPoint()
+        
+        amount = int(input("amount: "))
+        if lang == "DA" and stat in statListDA:
+            print(f"{stat}: {objDA[stat] + amount}")
+        elif lang == "EN" and stat in statListEN:
+            print(f"{stat}: {objDA[stat] + amount}")
+
 def main(): 
     command = Commands()
     
@@ -89,11 +101,15 @@ def main():
         command.inventory()
 
     elif choice == "addPoint":
-        command.addPoint("luck", 1)
+        command.addPoint()
 
     else:
-        print(f"sorry, \"{choice}\" is not a command.\n")
+        print(f"sorry, \"{choice}\" is not a valid command.\n")
         command.help()
     print()
-while True:
-    main()
+try:
+    while True:
+        if __name__ == "__main__":
+            main()
+except KeyboardInterrupt:
+    print("\n\tGoodBye!")
