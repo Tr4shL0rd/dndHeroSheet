@@ -1,0 +1,32 @@
+{
+    "PAGENUM": 208,
+    "ABILITIES": {
+        "ABILITY-DRINK": 1,
+        "STRENGTH-DRINK": 1,
+        "LUCK-DRINK": 1   
+    },
+    "VIT": 10,
+    "LUCK": 5,
+<<<<<<< HEAD:jsons/heroSheetEN.json
+    "GOLD": 0,
+=======
+    "GOLD": 1,
+>>>>>>> b4820e3f7d1b4b7401ff8071c22cb58f96088d87:jsons/jsons/heroSheetEN.json
+    "TREASURE": 0,
+    "CANTRIPS": 10,
+    "INVENTORY": {
+        "SWORD": 1,
+        "SHIELD": 1,
+        "LEATHER ARMOR": 1
+    },
+    "KEYRING": {
+        "KEYNAME": 99
+    },
+    "baseStats": {
+        "BASE_VIT": 10,
+        "BASE_LUCK": 5,
+        "BASE_GOLD": 0,
+        "BASE_TREASURE": 0,
+        "BASE_CANTRIPS": 10
+    }
+}
