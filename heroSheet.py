@@ -5,8 +5,8 @@
 
 # Description: For a danish D&D book "Sværd og Trolddom: Troldmanden fra Ildbjerget"
 
-#TODO
-# dump addPoint amount to .json or find some other way to save it 
+# TODO
+# dump addPoint amount to .json or find some other way to save it
 
 import json
 
@@ -31,6 +31,8 @@ def padding(text, Startnewline=False, EndNewline=False):
     else:
         pad = f"\n|<=================>{text.upper()}<===================>|\n"
     print(pad)
+
+
 class Commands():
     def help(self):
         padding("commands", False)
@@ -38,7 +40,7 @@ class Commands():
         print("|list        => Returns all keys and values.     |")
         print("|stats       => Returns all charater stats.      |")
         print("|inv         => Returns all items in inventory.  |")
-        print("|TESTING {                                       |")   
+        print("|TESTING {                                       |")
         print("|    addPoint    => Adds n points to stat x.     |")
         print("|    removePoint => Removes n points from stat x.|")
         print("|}                                               |")
@@ -62,8 +64,12 @@ class Commands():
 
     def stats(self, lang="DA"):
         padding("stats", True)
-        statsEN = [objEN["VIT"], objEN["LUCK"], objEN["GOLD"], objEN["TREASURE"], objEN["CANTRIPS"]]
-        statsDA = [objDA["udholdenhed"],objDA["held"], objDA["guld"], objDA["skatte"], objDA["proviant"]]
+        statsEN = [objEN["VIT"], objEN["LUCK"], objEN["GOLD"],
+                   objEN["TREASURE"], objEN["CANTRIPS"]]
+
+        statsDA = [objDA["udholdenhed"], objDA["held"],
+                   objDA["guld"], objDA["skatte"], objDA["proviant"]]
+                   
         statNameEN = ["VIT", "LUCK", "GOLD", "TREASURE", "CANTRIPS"]
         statNameDA = ["udholdenhed", "held", "guld", "skatte", "proviant"]
         name = 0
@@ -71,7 +77,7 @@ class Commands():
             for stat in statsDA:
                 print(f"{statNameDA[name]}: {stat}")
                 name += 1
-        else: 
+        else:
             for stat in statsEN:
                 print(f"{statNameEN[name]}: {stat}")
                 name += 1
@@ -86,9 +92,9 @@ class Commands():
     def addPoint(self, lang="DA"):
         padding("Add Point", True)
         statListDA = ["udholdenhed", "held"]
-        statListEN = ["vit","luck"]
-        
-        stat = str(input("stat: ")) 
+        statListEN = ["vit", "luck"]
+
+        stat = str(input("stat: "))
         if stat not in statListDA:
             print(f"'{stat}' is not a stat!")
             self.addPoint()
@@ -98,33 +104,34 @@ class Commands():
         elif lang == "EN" and stat in statListEN:
             print(f"{stat}: {objDA[stat] + amount}")
         padding("Add Point")
-        
-    #Function for Translation
+
+    # Function for Translation
     def trans(word):
         wordBook = {
-            #stats health
+            # stats health
             "vit": "udholdenhed",
             "udholdenhed": "vit",
-            #stats luck
+            # stats luck
             "luck": "held",
             "held": "luck",
-            #misc gold
+            # misc gold
             "gold": "guld",
             "guld": "gold",
-            #misc treasure
+            # misc treasure
             "treasure": "skatte",
             "skatte": "treasure",
-            #misc cantrips
+            # misc cantrips
             "cantrips": "proviant",
             "proviant": "cantrips"
         }
         return wordBook[word]
-        
-def main(): 
+
+
+def main():
     command = Commands()
-    
+
     choice = input("enter command(help): ")
-    
+
     if choice in objDA:
         command.getStatDA(choice)
     elif choice.upper() in objEN:
@@ -149,6 +156,8 @@ def main():
         print(f"sorry, \"{choice}\" is not a valid command.\n")
         command.help()
     print()
+
+
 try:
     while True:
         if __name__ == "__main__":
