@@ -5,9 +5,9 @@
         "Styrke-trylledrik": 1,
         "Lykke-trylledrik": 1   
     },
-    "udholdenhed": 15,
-    "held": 12,
-    "guld": 1,
+    "udholdenhed": 10,
+    "held": 5,
+    "guld": 0,
     "skatte": 0,
     "proviant": 10,
     "udstyrsliste": {
@@ -19,8 +19,8 @@
         "nøgleNavn": 99
     },
     "baseStats": {
-        "BASEudholdenhed": 15,
-        "BASEheld": 10,
+        "BASEudholdenhed": 10,
+        "BASEheld": 5,
         "BASEguld": 0,
         "BASEskatte": 0,
         "BASeproviant": 10
